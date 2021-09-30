@@ -1,0 +1,51 @@
+@import 'config';
+
+.sec-titles {
+    width: 100%;
+    height: auto;
+    margin: 80px auto;
+
+    .title {
+        font-size: 36px;
+        line-height: 40px;
+        color: $c-main-titles;
+        font-weight: 400;
+        font-family: $c-montserrat;
+        text-align: center;
+        margin: 0;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            content: '';
+            bottom: -30px;
+            right: 50%;
+            transform: translate(40%);
+            width: 76px;
+            height: 1px;
+            background-color: $c-primary-green;
+        }
+
+        &::after {
+            position: absolute;
+            content: '';
+            bottom: -35px;
+            left: 50%;
+            transform: translate(-40%);
+            width: 76px;
+            height: 1px;
+            background-color: $c-primary-green;
+        }
+
+        @media(max-width: $r-small) {
+            font-size: 25px;
+            line-height: 30px;
+        }
+    }
+
+    @media(max-width: $r-small) {
+        width: 90%;
+        margin: 60px auto;
+        height: auto;
+    }
+}
