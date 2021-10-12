@@ -46,11 +46,23 @@
   }
 }
 
+.sec-titles .white_title {
+  color: #fff;
+}
+
 @media (max-width: 540px) {
   .sec-titles {
     width: 90%;
     margin: 60px auto;
     height: auto;
   }
+}
+
+.grid_title {
+  font-size: 18px;
+  line-height: 26px;
+  color: #fff;
+  font-weight: 700;
+  margin: 0 0 30px;
 }
 /*# sourceMappingURL=global.css.map */

@@ -1,19 +1,20 @@
 @import 'config';
 
-@media(min-width: $r-medium + 1px) {
+.sticky {
+    background-color: rgba($c-header, 1);
+    height: 90px;
 
-    .sticky {
-        background-color: rgba($c-header, 1);
-        height: 90px;
+    .hamburger {
+        top: 25px;
+    }
 
-        .header-wrapper {
+    .header-wrapper {
 
-            .logo-box {
+        .logo-box {
 
-                .logo {
-                    width: auto;
-                    height: 60px;
-                }
+            .logo {
+                width: auto;
+                height: 60px;
             }
         }
     }
@@ -28,6 +29,7 @@ header {
     z-index: 10;
 
     .hamburger {
+        transition: .4s;
         position: absolute;
         top: 40px;
         right: 15px;

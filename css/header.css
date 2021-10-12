@@ -1,12 +1,15 @@
-@media (min-width: 1201px) {
-  .sticky {
-    background-color: #49473f;
-    height: 90px;
-  }
-  .sticky .header-wrapper .logo-box .logo {
-    width: auto;
-    height: 60px;
-  }
+.sticky {
+  background-color: #49473f;
+  height: 90px;
+}
+
+.sticky .hamburger {
+  top: 25px;
+}
+
+.sticky .header-wrapper .logo-box .logo {
+  width: auto;
+  height: 60px;
 }
 
 header {
@@ -20,6 +23,8 @@ header {
 }
 
 header .hamburger {
+  -webkit-transition: .4s;
+  transition: .4s;
   position: absolute;
   top: 40px;
   right: 15px;

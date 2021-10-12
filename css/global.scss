@@ -43,9 +43,21 @@
         }
     }
 
+    .white_title {
+        color: $c-white;
+    }
+
     @media(max-width: $r-small) {
         width: 90%;
         margin: 60px auto;
         height: auto;
     }
+}
+
+.grid_title {
+    font-size: 18px;
+    line-height: 26px;
+    color: $c-white;
+    font-weight: 700;
+    margin: 0 0 30px;
 }
