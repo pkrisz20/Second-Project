@@ -1,1 +1,42 @@
-/* No CSS *//*# sourceMappingURL=footer.css.map */
+footer {
+  background-color: #22353f;
+  padding: 30px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+footer .copyright_text {
+  font-size: 14px;
+  line-height: 26px;
+  color: #aeaeae;
+  font-weight: 300;
+  font-family: "Montserrat", sans-serif;
+}
+
+footer .copyright_text .ham_green {
+  color: #18cfab;
+  cursor: pointer;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+footer .copyright_text .ham_green:hover {
+  color: #f5f5f5;
+}
+
+@media (max-width: 540px) {
+  footer .copyright_text {
+    text-align: center;
+  }
+}
+
+@media (max-width: 540px) {
+  footer {
+    padding: 15px 0;
+  }
+}
+/*# sourceMappingURL=footer.css.map */

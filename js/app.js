@@ -537,7 +537,7 @@ function addMarkerToGroup(group, coordinate, html) {
   var map = new H.Map(document.getElementById('map'),
     defaultLayers.vector.normal.map,{
     center: { lat:46.09419982786978, lng:19.654255565845435 },
-    zoom: 4,
+    zoom: 6,
     pixelRatio: window.devicePixelRatio || 1
   });
   window.addEventListener('resize', () => map.getViewPort().resize());
@@ -551,3 +551,62 @@ function addMarkerToGroup(group, coordinate, html) {
   
   // Now use the map as required...
   addInfoBubble(map);
+
+
+jQuery.validator.addMethod("customEmail", function(value, element) {
+
+    return this.optional( element ) || /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test( value ); 
+}, "Please enter valid email address!");
+
+var $contactForm = $('#contact_id');
+if($contactForm.length){
+    $contactForm.validate({
+
+        rules:{
+            name: {
+                required: true
+            },
+            email: {
+                required: true,
+                customEmail: true
+            },
+            message: {
+                required: true
+            }
+        },
+        messages:{
+
+            name: {
+                required: 'Please enter your name!'
+            },
+            email: {
+                required: 'Please enter your email!',
+                email: 'Please enter valid email!'
+            },
+            message: {
+                required: 'Please write your message!'
+            }
+        }
+    });
+}
+
+var $subscribeForm = $('#subscribe_form');
+if($subscribeForm.length){
+    $subscribeForm.validate({
+
+        rules:{
+
+            email: {
+                required: true,
+                customEmail: true
+            }
+        },
+        messages:{
+
+            email: {
+                required: 'Please enter your email!',
+                email: 'Please enter valid email!'
+            }
+        }
+    });
+}
