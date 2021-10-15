@@ -89,6 +89,7 @@ header {
                 transition: .4s;
                 width: auto;
                 height: 70px;
+                cursor: pointer;
             }
 
             @media(max-width: $r-small) {

@@ -108,6 +108,7 @@ header .header-wrapper .logo-box .logo {
   transition: .4s;
   width: auto;
   height: 70px;
+  cursor: pointer;
 }
 
 @media (max-width: 540px) {

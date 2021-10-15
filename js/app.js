@@ -52,12 +52,80 @@ $('.carousel-hero').slick({
     ]
 });
 
+var screen_width = 0;
+
+$(window).on("load", () => {
+
+    screen_width = $(window).width();
+        
+    $('.amazing-wrapper').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        mobileFirst: true,
+        responsive: [
+            {
+            breakpoint: 1201,
+            settings: "unslick"
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true,
+                arrows: true
+                }
+            },
+            {
+            breakpoint: 540,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: false
+                }
+            },
+            {
+            breakpoint: 320,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: false
+                }
+            }
+        ]
+    });
+
+    if(screen_width > 1200) {
+        $('.amazing-wrapper').slick("unslick");
+    }
+});
+
 $(document).ready(() => {
 
-    var screen_width = $(window).width();
+    $(window).resize(() => {
 
-    if(screen_width <= 1200) {
+        screen_width = $(window).width();
 
+        if(screen_width > 1200) {
+            $('.amazing-wrapper').slick("unslick");
+        }
+    
         $('.amazing-wrapper').slick({
             dots: true,
             infinite: true,
@@ -110,70 +178,6 @@ $(document).ready(() => {
                 }
             ]
         });
-    }
-});
-
-$(document).ready(() => {
-
-    $(window).resize(() => {
-
-        screen_width = $(window).width();
-
-        if(screen_width <= 1200) {
-    
-            $('.amazing-wrapper').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                arrows: true,
-                mobileFirst: true,
-                responsive: [
-                    {
-                    breakpoint: 1200,
-                    settings: "unslick"
-                    },
-                    {
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 1,
-                            infinite: true,
-                            dots: true
-                        }
-                    },
-                    {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                        infinite: true,
-                        dots: true,
-                        arrows: true
-                        }
-                    },
-                    {
-                    breakpoint: 540,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        dots: true,
-                        arrows: false
-                        }
-                    },
-                    {
-                    breakpoint: 320,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        dots: true,
-                        arrows: false
-                        }
-                    }
-                ]
-            });
-        }
     });
 });
 
@@ -282,12 +286,78 @@ $('.counter').countUp({
     delay: 10
 });
 
-$(document).ready(() => {
+$(window).on("load", () => {
 
     screen_width = $(window).width();
 
-    if(screen_width <= 1200) {
+    $('.breaking-grid').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        arrows: true,
+        mobileFirst: true,
+        responsive: [
+            {
+            breakpoint: 1200,
+            settings: "unslick"
+            },
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true,
+                arrows: true
+                }
+            },
+            {
+            breakpoint: 540,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: false
+                }
+            },
+            {
+            breakpoint: 320,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: false
+                }
+            }
+        ]
+    });
 
+    if(screen_width > 1200) {
+        $('.breaking-grid').slick("unslick");
+    }
+});
+
+$(document).ready(() => {
+
+    $(window).resize(() => {
+
+        screen_width = $(window).width();
+
+        if(screen_width > 1200) {
+            $('.breaking-grid').slick("unslick");
+        }
+    
         $('.breaking-grid').slick({
             dots: true,
             infinite: true,
@@ -340,70 +410,6 @@ $(document).ready(() => {
                 }
             ]
         });
-    }
-});
-
-$(document).ready(() => {
-
-    $(window).resize(() => {
-
-        screen_width = $(window).width();
-
-        if(screen_width <= 1200) {
-    
-            $('.breaking-grid').slick({
-                dots: true,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                arrows: true,
-                mobileFirst: true,
-                responsive: [
-                    {
-                    breakpoint: 1200,
-                    settings: "unslick"
-                    },
-                    {
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 3,
-                            slidesToScroll: 1,
-                            infinite: true,
-                            dots: true
-                        }
-                    },
-                    {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                        infinite: true,
-                        dots: true,
-                        arrows: true
-                        }
-                    },
-                    {
-                    breakpoint: 540,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        dots: true,
-                        arrows: false
-                        }
-                    },
-                    {
-                    breakpoint: 320,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        dots: true,
-                        arrows: false
-                        }
-                    }
-                ]
-            });
-        }
     });
 });
 
@@ -585,27 +591,6 @@ if($contactForm.length){
             },
             message: {
                 required: 'Please write your message!'
-            }
-        }
-    });
-}
-
-var $subscribeForm = $('#subscribe_form');
-if($subscribeForm.length){
-    $subscribeForm.validate({
-
-        rules:{
-
-            email: {
-                required: true,
-                customEmail: true
-            }
-        },
-        messages:{
-
-            email: {
-                required: 'Please enter your email!',
-                email: 'Please enter valid email!'
             }
         }
     });
