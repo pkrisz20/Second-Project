@@ -1,5 +1,18 @@
 @import 'config';
 
+.page_wrapper {
+    width: 1170px;
+    height: auto;
+    margin: 0 auto;
+    padding: 0 15px;
+
+    @media(max-width: $r-medium) {
+        width: 90%;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+}
+
 .sec-titles {
     width: 100%;
     height: auto;
@@ -13,6 +26,7 @@
         font-family: $c-montserrat;
         text-align: center;
         margin: 0;
+        padding: 0 15px;
         position: relative;
 
         &::before {

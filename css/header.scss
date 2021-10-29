@@ -18,6 +18,22 @@
             }
         }
     }
+
+    @media(max-width: $r-medium) {
+        height: 70px;
+
+        .hamburger {
+            top: 15px;
+        }
+
+        .header-wrapper {
+            .navbar {
+                .search-box {
+                    top: 25px;
+                }
+            }
+        }
+    }
 }
 
 header {
@@ -31,7 +47,7 @@ header {
     .hamburger {
         transition: .4s;
         position: absolute;
-        top: 40px;
+        top: 25px;
         right: 15px;
         z-index: 5;
         display: none;
@@ -72,11 +88,8 @@ header {
         }
     }
 
-    .header-wrapper {
-        width: 1170px;
+    .page_wrapper {
         height: 100%;
-        padding: 0 15px;
-        margin: 0 auto;
         display: flex;
         justify-content: space-between;
 
@@ -86,19 +99,19 @@ header {
             align-items: center;
             
             .logo {
-                transition: .4s;
-                width: auto;
-                height: 70px;
+                transition: all .4s ease-in-out;
+                width: 196px;
+                height: 68px;
                 cursor: pointer;
+
+                @media(max-width: $r-small) {
+                    width: auto;
+                    height: 60px;
+                }
             }
 
             @media(max-width: $r-small) {
                 margin-left: 10px;
-
-                .logo {
-                    width: auto;
-                    height: 60px;
-                }
             }
         }
     
@@ -110,6 +123,7 @@ header {
                 margin: 0;
                 padding: 0;
                 display: flex;
+                position: relative;
     
                 .list-item {
                     height: auto;
@@ -182,6 +196,7 @@ header {
                 display: flex;
                 align-items: center;
                 margin-left: 10px;
+                transition: top .4s ease-in-out;
 
                 i {
                     color: #bbbbbb;
@@ -197,8 +212,10 @@ header {
                     }
                 }
 
-                @media(max-width: $r-small) {
-                    margin-right: 80px;
+                @media(max-width: $r-medium) {
+                    position: absolute;
+                    top: 35px;
+                    right: 75px;
                 }
             }
         }
@@ -207,7 +224,7 @@ header {
             width: 100%;
             padding: 0;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
         }
 
         @media(max-width: $r-small) {
@@ -218,7 +235,7 @@ header {
         }
     }
 
-    @media(max-width: $r-tablet) {
+    @media(max-width: $r-medium) {
         height: 90px;
     }
 }

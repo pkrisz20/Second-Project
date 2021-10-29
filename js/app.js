@@ -1,7 +1,30 @@
+var hamburgerOpen = false;
 $(".hamburger").on("click", () => {
 
-    $(".hamburger").toggleClass("open");
-    $(".menu").toggleClass("open-menu");
+    if(hamburgerOpen === false) {
+        $(".hamburger").addClass("open");
+        $(".menu").addClass("open-menu");
+        hamburgerOpen = true;
+        document.body.style.overflow = 'hidden';
+        $(".overlay_black").css("display", "block");
+
+    } else {
+        $(".hamburger").removeClass("open");
+        $(".menu").removeClass("open-menu");
+        hamburgerOpen = false;
+        document.body.style.overflow = 'scroll';
+        $(".overlay_black").css("display", "none");
+    }
+});
+
+$(".overlay_black").on("click", () => {
+    if(hamburgerOpen === true) {
+        $(".hamburger").removeClass("open");
+        $(".menu").removeClass("open-menu");
+        hamburgerOpen = false;
+        document.body.style.overflow = 'scroll';
+        $(".overlay_black").css("display", "none");
+    }
 });
 
 $(window).bind('scroll', () => {
@@ -18,7 +41,7 @@ $(window).bind('scroll', () => {
 $('.carousel-hero').slick({
     dots: true,
     infinite: false,
-    speed: 800,
+    speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
@@ -52,93 +75,115 @@ $('.carousel-hero').slick({
     ]
 });
 
-var screen_width = 0;
+var amazingCarouselInitialized = false;
+var breakingCarouselInitialized = false;
+var TeamCarouselInitialized = false;
 
-$(window).on("load", () => {
-
-    screen_width = $(window).width();
-        
-    $('.amazing-wrapper').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        arrows: true,
-        mobileFirst: true,
-        responsive: [
-            {
-            breakpoint: 1201,
-            settings: "unslick"
-            },
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                infinite: true,
-                dots: true,
-                arrows: true
-                }
-            },
-            {
-            breakpoint: 540,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                dots: true,
-                arrows: false
-                }
-            },
-            {
-            breakpoint: 320,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                dots: true,
-                arrows: false
-                }
-            }
-        ]
-    });
-
-    if(screen_width > 1200) {
-        $('.amazing-wrapper').slick("unslick");
-    }
+$(window).resize(() => {
+    checkScreen();
+    checkScreenBreaking();
+    checkScreenTeam();
 });
 
-$(document).ready(() => {
+$(window).ready(() => {
+    checkScreen();
+    checkScreenBreaking();
+    checkScreenTeam();
+});
 
-    $(window).resize(() => {
+function checkScreen() {
+    var screen_width = $(window).width();
 
-        screen_width = $(window).width();
-
-        if(screen_width > 1200) {
-            $('.amazing-wrapper').slick("unslick");
+    if (screen_width > 1200) {
+        if(amazingCarouselInitialized === true) {
+            $('.amazing_carousel').slick("unslick");
+            amazingCarouselInitialized = false;
         }
-    
-        $('.amazing-wrapper').slick({
+    } else {
+        initAmazing();
+    }
+}
+
+function checkScreenBreaking() {
+    var screen_width = $(window).width();
+
+    if (screen_width > 1200) {
+        if(breakingCarouselInitialized === true) {
+            $('.breaking-grid').slick("unslick");
+            breakingCarouselInitialized = false;
+        }
+    } else {
+        initBreaking();
+    }
+}
+
+function checkScreenTeam() {
+    var screen_width = $(window).width();
+
+    if (screen_width > 540) {
+        if(TeamCarouselInitialized === true) {
+            $('.cards').slick("unslick");
+            TeamCarouselInitialized = false;
+        }
+    } else {
+        initTeam();
+    }
+}
+
+function initAmazing() {
+
+    if(amazingCarouselInitialized == false) {
+
+        $('.amazing_carousel').slick({
             dots: true,
             infinite: true,
-            speed: 500,
+            speed: 300,
+            arrows: true,
+            mobileFirst: true,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 320,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        arrows: false
+                    }
+                }
+            ]
+        });
+        amazingCarouselInitialized = true;
+    } else {
+        return;
+    }
+}
+
+function initBreaking() {
+
+    if(breakingCarouselInitialized == false) {
+
+        $('.breaking-grid').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
             slidesToShow: 2,
             slidesToScroll: 1,
             arrows: true,
             mobileFirst: true,
             responsive: [
-                {
-                breakpoint: 1200,
-                settings: "unslick"
-                },
                 {
                     breakpoint: 1024,
                     settings: {
@@ -178,8 +223,29 @@ $(document).ready(() => {
                 }
             ]
         });
-    });
-});
+        breakingCarouselInitialized = true;
+    } else {
+        return;
+    }
+}
+
+function initTeam() {
+
+    if(TeamCarouselInitialized == false) {
+
+        $('.cards').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false
+        });
+        TeamCarouselInitialized = true;
+    } else {
+        return;
+    }
+}
 
 const tab_open = (evt, name) => {
 
@@ -286,281 +352,70 @@ $('.counter').countUp({
     delay: 10
 });
 
-$(window).on("load", () => {
-
-    screen_width = $(window).width();
-
-    $('.breaking-grid').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        arrows: true,
-        mobileFirst: true,
-        responsive: [
-            {
-            breakpoint: 1200,
-            settings: "unslick"
-            },
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                infinite: true,
-                dots: true,
-                arrows: true
-                }
-            },
-            {
-            breakpoint: 540,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                dots: true,
-                arrows: false
-                }
-            },
-            {
-            breakpoint: 320,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                dots: true,
-                arrows: false
-                }
-            }
-        ]
-    });
-
-    if(screen_width > 1200) {
-        $('.breaking-grid').slick("unslick");
-    }
+$('.slider-for').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+    asNavFor: '.slider-nav'
 });
 
-$(document).ready(() => {
-
-    $(window).resize(() => {
-
-        screen_width = $(window).width();
-
-        if(screen_width > 1200) {
-            $('.breaking-grid').slick("unslick");
-        }
-    
-        $('.breaking-grid').slick({
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            arrows: true,
-            mobileFirst: true,
-            responsive: [
-                {
-                breakpoint: 1200,
-                settings: "unslick"
-                },
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        infinite: true,
-                        dots: true
-                    }
-                },
-                {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true,
-                    arrows: true
-                    }
-                },
-                {
-                breakpoint: 540,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    dots: true,
-                    arrows: false
-                    }
-                },
-                {
-                breakpoint: 320,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    dots: true,
-                    arrows: false
-                    }
-                }
-            ]
-        });
-    });
-});
-
-$(document).ready(() => {
-    
-    $('.slider-for').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        fade: true,
-        asNavFor: '.slider-nav'
-    });
-    
-    $('.slider-nav').slick({
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        asNavFor: '.slider-for',
-        dots: false,
-        centerMode: true,
-        centerPadding: false,
-        focusOnSelect: true,
-        responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
+$('.slider-nav').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    asNavFor: '.slider-for',
+    dots: false,
+    centerMode: true,
+    centerPadding: false,
+    focusOnSelect: true,
+    responsive: [
+        {
+            breakpoint: 1024,
+            settings: {
                 slidesToShow: 3
-              }
-            },
-            {
-              breakpoint: 800,
-              settings: {
-                slidesToShow: 2
-              }
-            },
-            {
-                breakpoint: 540,
-                settings: {
-                  slidesToShow: 1
-                }
             }
-        ]
-    });
+        },
+        {
+            breakpoint: 800,
+            settings: {
+                slidesToShow: 2
+            }
+        },
+    ]
 });
 
-$(document).ready(() => {
-
-    $(window).resize(() => {
-
-        $('.slider-for').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            fade: true,
-            asNavFor: '.slider-nav'
-        });
-        
-        $('.slider-nav').slick({
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            asNavFor: '.slider-for',
-            dots: false,
-            centerMode: true,
-            centerPadding: false,
-            focusOnSelect: true,
-            responsive: [
-                {
-                  breakpoint: 1024,
-                  settings: {
-                    slidesToShow: 3
-                  }
-                },
-                {
-                  breakpoint: 800,
-                  settings: {
-                    slidesToShow: 2
-                  }
-                },
-                {
-                    breakpoint: 540,
-                    settings: {
-                      slidesToShow: 1
-                    }
-                }
-            ]
-        });
-    });
-});
-
-function addMarkerToGroup(group, coordinate, html) {
-    var marker = new H.map.Marker(coordinate);
-    // add custom data to the marker
-    marker.setData(html);
-    group.addObject(marker);
-}
+function addSVGMarkers(map) {
+    var svgMarkup = `<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M-995.72 1225.8c-.273-.78-1.645-6.027-3.049-11.662-4.441-17.823-12.122-36.988-22.546-56.255-5.984-11.061-7.067-12.824-24.551-40-28.252-43.911-33.217-56.241-32.173-79.89.957-21.672 8.272-37.909 24.149-53.61 13.179-13.032 27.807-20.549 45.601-23.432 44.097-7.145 86.878 21.883 95.546 64.828 2.02 10.012 1.572 27.243-.953 36.604-2.77 10.269-13.883 31.045-29.589 55.315-28.348 43.807-39.082 65.687-47.119 96.05-3.111 11.755-4.398 14.673-5.316 12.052z" style="stroke:#5a0000;stroke-width:5.7;fill:#f41922" transform="matrix(.18403 0 0 .17534 214.35 -157.87)"/><path style="stroke-width:0;fill:#0e232e" d="M-962.86 1042.4c0 16.568-14.071 30-31.429 30-17.357 0-31.429-13.432-31.429-30 0-16.569 14.071-30 31.429-30s31.429 13.431 31.429 30z" transform="matrix(.2016 0 0 .19208 231.816 -173.312)"/></svg>`;
     
-  /**
-   * Add two markers showing the position of Liverpool and Manchester City football clubs.
-   * Clicking on a marker opens an infobubble which holds HTML content related to the marker.
-   * @param {H.Map} map A HERE Map instance within the application
-   */
-  function addInfoBubble(map) {
-    var group = new H.map.Group();
-  
-    map.addObject(group);
-  
-    // add 'tap' event listener, that opens info bubble, to the group
-    group.addEventListener('tap', (evt) => {
-      // event target is the marker itself, group is a parent event target
-      // for all objects that it contains
-      var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
-        // read custom data
-        content: evt.target.getData()
-      });
-      // show info bubble
-      ui.addBubble(bubble);
-    }, false);
-  
-    addMarkerToGroup(group, { lat: 46.09419982786978, lng: 19.654255565845435 },
-    '<div><a target="blank" href="https://erdsoft.com/">Erdsoft</a></div>' +
-    '<div>Subotica, Serbia<br />Digital Hive</div>');
+    var bearsIcon = new H.map.Icon(
+        svgMarkup.replace('${FILL}', 'red')),
+        bearsMarker = new H.map.Marker({ lat:46.09419982786978, lng:19.654255565845435 }, { icon: bearsIcon });
+        
+    map.addObject(bearsMarker);
 }
-  
-  //Step 1: initialize communication with the platform
-  // In your own code, replace variable window.apikey with your own apikey
-  var platform = new H.service.Platform({
+
+var platform = new H.service.Platform({
     apikey: "SpQSyfEx5FqUsBzTgQxW0jjplO17F_EHRhEkmTz7n00"
-  });
-  var defaultLayers = platform.createDefaultLayers();
+});
+var defaultLayers = platform.createDefaultLayers();
   
-  //Step 2: initialize a map - this map is centered over Europe
-  var map = new H.Map(document.getElementById('map'),
+var map = new H.Map(document.getElementById('map'),
     defaultLayers.vector.normal.map,{
-    center: { lat:46.09419982786978, lng:19.654255565845435 },
-    zoom: 6,
-    pixelRatio: window.devicePixelRatio || 1
-  });
-  window.addEventListener('resize', () => map.getViewPort().resize());
-  
-  // MapEvents enables the event system
-  // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
-  var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-  
-  // create default UI with layers provided by the platform
-  var ui = H.ui.UI.createDefault(map, defaultLayers);
-  
-  // Now use the map as required...
-  addInfoBubble(map);
+        center: { lat:46.09419982786978, lng:19.654255565845435 },
+        zoom: 6,
+        pixelRatio: window.devicePixelRatio || 1
+    }
+);
+
+window.addEventListener('resize', () => map.getViewPort().resize());
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+// create default UI with layers provided by the platform
+var ui = H.ui.UI.createDefault(map, defaultLayers);
+addSVGMarkers(map);
 
 
 jQuery.validator.addMethod("customEmail", function(value, element) {
-
     return this.optional( element ) || /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test( value ); 
 }, "Please enter valid email address!");
 

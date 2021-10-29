@@ -1,3 +1,18 @@
+.page_wrapper {
+  width: 1170px;
+  height: auto;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+@media (max-width: 1200px) {
+  .page_wrapper {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+}
+
 .sec-titles {
   width: 100%;
   height: auto;
@@ -12,6 +27,7 @@
   font-family: "Montserrat", sans-serif;
   text-align: center;
   margin: 0;
+  padding: 0 15px;
   position: relative;
 }
 
