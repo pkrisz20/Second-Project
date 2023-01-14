@@ -1,5 +1,5 @@
 Javitasok masodik projekt:
-    ☐ Pontos meretek egesz projektben
+    ✔ Pontos meretek egesz projektben @done(21-10-29 13:12)
     ✔ Slick js javitasa @done(21-10-22 10:49)
     ✔ Mobil nezetben a menu nyitasanal legyen egy overlay meg ne lehessen gorgetni @done(21-10-22 12:10)
     ✔ 1200px alatt felesleges a magas header (50px eleg) csak 70px-ig birtam mert mar nem engedte meg a logo merete @done(21-10-22 12:28)
